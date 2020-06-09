@@ -57,4 +57,7 @@ class Film extends Model
 	public function genre() {
 		return $this->belongsTo('App\Genre', 'id_genre');
 	}
+	public function distributeur() {
+		return $this->belongsTo('App\Distributeur', 'id_distributeur');
+	}
 }

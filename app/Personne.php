@@ -4,7 +4,7 @@
  * Created by Reliese Model.
  */
 
-namespace App\Models;
+namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -44,4 +44,24 @@ class Personne extends Model
 		'ville',
 		'pays'
 	];
+
+	public function fonctions()
+	{
+		return $this->belongsToMany('App\Fonction', 'employes', 'id_personne', 'id_fonction');
+	}
+	public static function techniciens() {
+		return Personne::whereHas('fonctions', function($func){
+			$func->where('nom', 'projectionniste');
+		})->get();
+	}
+	public static function ouvreurs() {
+		return Personne::whereHas('fonctions', function($func){
+			$func->where('nom', 'hotesse');
+		})->get();
+	}
+	public static function menages() {
+		return Personne::whereHas('fonctions', function($func){
+			$func->where('nom', 'agent entretien');
+		})->get();
+	}
 }

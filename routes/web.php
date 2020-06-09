@@ -22,3 +22,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/wall', 'WallController@index')->name('wall')->middleware('auth');
 Route::post('/write', 'WallController@write')->name('write');
+Route::get('/seance', 'SeanceController@index')->name('seance');
+Route::post('/seance/create', 'SeanceController@create')->name('create_seance');

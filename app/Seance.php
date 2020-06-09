@@ -4,7 +4,7 @@
  * Created by Reliese Model.
  */
 
-namespace App\Models;
+namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -50,4 +50,24 @@ class Seance extends Model
 		'debut_seance',
 		'fin_seance'
 	];
+
+	public function film() {
+		return $this->belongsTo("App\Film", "id_film");
+	}
+	public function salle()
+	{
+		return $this->belongsTo('App\Salle', "id_salle");
+	}
+	public function ouvreur()
+	{
+		return $this->belongsTo('App\Personne', 'id_personne_ouvreur');
+	}
+	public function technicien()
+	{
+		return $this->belongsTo('App\Personne', 'id_personne_technicien');
+	}
+	public function menage()
+	{
+		return $this->belongsTo('App\Personne', 'id_personne_menage');
+	}
 }
